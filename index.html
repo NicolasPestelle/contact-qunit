@@ -64,7 +64,14 @@
     <!-- BEGIN - Les tests -->
     <script>
       QUnit.test("header tests", function (assert) {
-        assert.ok(false);
+          var tableau = $('table tbody tr th');
+          var element1 = tableau[0].innerHTML;
+          var element2 = tableau[1].innerHTML;
+          var element3 = tableau[2].innerHTML;
+          var element4 = tableau[3].innerHTML;
+          var element5 = tableau[4].innerHTML;
+          var element6 = tableau[5].innerHTML;
+      assert.ok(element1 === "First name" && element2 === "Last name" && element3 === "Phones" && element4 === "Mails" && element5 === "Tags" && element6 === "Actions");
       });
 
       QUnit.test("list tests", function (assert) {
