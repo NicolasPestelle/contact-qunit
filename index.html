@@ -96,9 +96,6 @@
 
       QUnit.test("first entry tests", function (assert) {
 
-          // Passé à la suite par manque de temps, je reviendrai pour finir plus tard
-          // Je le laisse tant que le test passe une fois revenu un peu en arrière
-
           var prenoms = $('table tbody tr td:first-child');
           var noms = $('table tbody tr td:nth-child(2)');
           var phones = $('table tbody tr td:nth-child(3)');
@@ -110,15 +107,14 @@
           var test = Contact.Contacts.instance();
           var iterator = test.iterator();
           var contact = iterator.next();
-          //var contactPhones = contact.phones();
 
           assert.equal(prenoms[0].innerHTML, contact.firstName());
           assert.equal(noms[0].innerHTML, contact.lastName());
           assert.equal(tags[0].innerHTML, contact.tags());
-          assert.equal(formatPhones[0].substring(0,10),"0616642258");
-          assert.equal(formatPhones[1].substring(0,10),"0321465676");
-          assert.equal(formatMail[0].substring(0, formatMail[0].length-5),"ramat@lisic.univ-littoral.fr");
-          assert.equal(formatMail[1].substring(0, formatMail[1].length-7),"eric.ramat@gmail.com");
+          assert.equal(formatPhones[0].substring(0,10),contact.phones()[0].number());
+          assert.equal(formatPhones[1].substring(0,10),contact.phones()[1].number());
+          assert.equal(formatMail[0].substring(0, formatMail[0].length-5),contact.mails()[0].address());
+          assert.equal(formatMail[1].substring(0, formatMail[1].length-7),contact.mails()[1].address());
 
       });
 
@@ -155,8 +151,7 @@
           var noms = $('table tbody tr td:nth-child(2)');
           for(var i=0; i< test.size()-1; i++)
           {
-              console.log(noms[i].innerHTML);
-              console.log(noms[i+1].innerHTML);
+        
               if(noms[i].innerHTML > noms[i+1].innerHTML)
                   flag = false;
 
