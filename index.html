@@ -95,10 +95,54 @@
       });
 
       QUnit.test("first entry tests", function (assert) {
-        assert.ok(false);
+
+          // Passé à la suite par manque de temps, je reviendrai pour finir plus tard
+          // Je le laisse tant que le test passe une fois revenu un peu en arrière
+
+          var prenoms = $('table tbody tr td:first-child');
+          var noms = $('table tbody tr td:nth-child(2)');
+          var phones = $('table tbody tr td:nth-child(3)');
+          var mails = $('table tbody tr td:nth-child(4)');
+          var tags = $('table tbody tr td:nth-child(5)');
+          var formatPhones = phones[0].innerHTML.split("/");
+          var formatMail = mails[0].innerHTML.split("/");
+
+          var test = Contact.Contacts.instance();
+          var iterator = test.iterator();
+          var contact = iterator.next();
+          //var contactPhones = contact.phones();
+
+          assert.equal(prenoms[0].innerHTML, contact.firstName());
+          assert.equal(noms[0].innerHTML, contact.lastName());
+          assert.equal(tags[0].innerHTML, contact.tags());
+          assert.equal(formatPhones[0].substring(0,10),"0616642258");
+          assert.equal(formatPhones[1].substring(0,10),"0321465676");
+          assert.equal(formatMail[0].substring(0, formatMail[0].length-5),"ramat@lisic.univ-littoral.fr");
+          assert.equal(formatMail[1].substring(0, formatMail[1].length-7),"eric.ramat@gmail.com");
+
       });
 
       QUnit.test("remove contact tests", function (assert) {
+
+          var test = Contact.Contacts.instance();
+          var bouton = $('table tbody tr td a')[0];
+          var prenom = $('table tbody tr td:first-child')[0];
+          var nom = $('table tbody tr td:nth-child(2)')[0];
+          var size = test.size();
+          console.log(size);
+          console.log(prenom.innerHTML);
+          console.log(nom.innerHTML);
+
+          bouton.click();
+
+          var prenom2 = $('table tbody tr td:first-child')[0];
+          var nom2 = $('table tbody tr td:nth-child(2)')[0];
+          var size2 = test.size();
+
+          assert.ok(size !== size2 && prenom !== prenom2 && nom !== nom2);
+
+
+
         assert.ok(false);
       });
 
