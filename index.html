@@ -129,9 +129,7 @@
           var prenom = $('table tbody tr td:first-child')[0];
           var nom = $('table tbody tr td:nth-child(2)')[0];
           var size = test.size();
-          console.log(size);
-          console.log(prenom.innerHTML);
-          console.log(nom.innerHTML);
+
 
           bouton.click();
 
@@ -142,13 +140,12 @@
           assert.ok(size !== size2 && prenom.innerHTML !== prenom2.innerHTML && nom.innerHTML !== nom2.innerHTML);
 
 
+
       });
 
       QUnit.test("sort contact tests", function (assert) {
 
           var test = Contact.Contacts.instance();
-          var iterator = test.iterator();
-          var tmpnom;
           var bouton = $("#button_sort");
           var flag = true;
 
@@ -158,11 +155,11 @@
           var noms = $('table tbody tr td:nth-child(2)');
           for(var i=0; i< test.size()-1; i++)
           {
-            /*  var contact = iterator.next();
-
-              if(noms[i] > noms[i+1])
+              console.log(noms[i].innerHTML);
+              console.log(noms[i+1].innerHTML);
+              if(noms[i].innerHTML > noms[i+1].innerHTML)
                   flag = false;
-              i++;*/
+
           }
         assert.ok(flag);
       });
