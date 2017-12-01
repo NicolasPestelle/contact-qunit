@@ -75,7 +75,23 @@
       });
 
       QUnit.test("list tests", function (assert) {
-        assert.ok(false);
+          var test = Contact.Contacts.instance();
+          var iterator = test.iterator();
+          var prenom = $('table tbody tr td:first-child');
+          var nom = $('table tbody tr td:nth-child(2)');
+
+          var tmpnom;
+          var tmpprenom;
+          var i = 0;
+          while(iterator.hasNext())
+          {
+              var contact = iterator.next();
+              tmpnom = nom[i].innerHTML;
+              tmpprenom = prenom[i].innerHTML;
+             assert.equal(contact.firstName(), tmpprenom );
+             assert.equal(contact.lastName(), tmpnom);
+             i++;
+          }
       });
 
       QUnit.test("first entry tests", function (assert) {
